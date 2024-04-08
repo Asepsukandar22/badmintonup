@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Apr 2024 pada 11.32
+-- Waktu pembuatan: 08 Apr 2024 pada 12.28
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.0.30
 
@@ -333,7 +333,86 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `kode_beli`, `nama_pemasok`, `no_hp`, `alamat`, `nama_barang`, `id_kategori`, `merk`, `harga_beli`, `satuan`, `jumlah`, `tanggal_beli`, `status_stok`) VALUES
-(6, 'KB001', 'Asep', '22', 'saa', 'KERTAS A4', 1, 'asa', '22', 'PCS', 22, '2024-02-18', 'sudah');
+(2, 'KB002', 'Alex', '83847234', 'SUKABUMI', 'Teh Botol Sosro', 2, 'Sosro', '5000', 'BTL', 40, '2024-04-10', 'belum'),
+(3, 'KB003', 'Ben', '83847235', 'SUKABUMI', 'Teh Kotak', 2, 'kotak', '5000', 'BTL', 40, '2024-04-11', 'belum'),
+(4, 'KB004', 'Chloe', '83847236', 'SUKABUMI', 'Teh Pucuk Harum', 2, 'pucuk', '5000', 'BTL', 40, '2024-04-12', 'belum'),
+(5, 'KB005', 'Dan', '83847237', 'SUKABUMI', 'Teh Gelas', 2, 'gelas', '5000', 'BTL', 40, '2024-04-13', 'belum'),
+(6, 'KB001', 'Asep', '22', 'saa', 'KERTAS A4', 1, 'asa', '22', 'PCS', 22, '2024-02-18', 'sudah'),
+(7, 'KB007', 'Finn', '83847239', 'SUKABUMI', 'Teh Tong Tji', 2, 'tong hiji', '5000', 'BTL', 40, '2024-04-15', 'belum'),
+(8, 'KB008', 'Grace', '83847240', 'SUKABUMI', 'Teh Rio', 2, 'rio', '5000', 'BTL', 40, '2024-04-16', 'belum'),
+(9, 'KB009', 'Harry', '83847241', 'SUKABUMI', 'Teh Gelas Sosro', 2, 'gelas', '5000', 'BTL', 40, '2024-04-17', 'belum'),
+(10, 'KB010', 'Ivy', '83847242', 'SUKABUMI', 'Kopi Kapal Api', 2, 'kapal api', '5000', 'BTL', 40, '2024-04-18', 'belum'),
+(11, 'KB011', 'Jack', '83847243', 'SUKABUMI', 'Kopi ABC', 2, 'ABC', '5000', 'BTL', 40, '2024-04-19', 'belum'),
+(12, 'KB012', 'Kate', '83847244', 'SUKABUMI', 'Kopi Good Day', 2, 'Good Day', '5000', 'BTL', 40, '2024-04-20', 'belum'),
+(13, 'KB013', 'Liam', '83847245', 'SUKABUMI', 'Kopi Torabika', 2, 'Torabika', '5000', 'BTL', 40, '2024-04-21', 'belum'),
+(14, 'KB014', 'Mia', '83847246', 'SUKABUMI', 'Kopi Luwak White Koffie', 2, 'Luwak', '5000', 'BTL', 40, '2024-04-22', 'belum'),
+(15, 'KB015', 'Noah', '83847247', 'SUKABUMI', 'Kopi Top', 2, 'Top', '5000', 'BTL', 40, '2024-04-23', 'belum'),
+(16, 'KB016', 'Olivia', '83847248', 'SUKABUMI', 'Kopi Joss', 2, 'Joss', '5000', 'BTL', 40, '2024-04-24', 'belum'),
+(17, 'KB017', 'Pete', '83847249', 'SUKABUMI', 'Kopi Nescafe', 2, 'nescape', '5000', 'BTL', 40, '2024-04-25', 'belum'),
+(18, 'KB018', 'Rose', '83847250', 'SUKABUMI', 'Kopi Indocafe', 2, 'indo cape', '5000', 'BTL', 40, '2024-04-26', 'belum'),
+(19, 'KB019', 'Sam', '83847251', 'SUKABUMI', 'Kopi Kapal Tongkang', 2, 'kapal', '5000', 'BTL', 40, '2024-04-27', 'belum'),
+(20, 'KB020', 'Tess', '83847252', 'SUKABUMI', 'Kopi ABC Susu', 2, '0', '5000', 'BTL', 40, '2024-04-28', 'belum'),
+(21, 'KB021', 'Will', '83847253', 'SUKABUMI', 'Kopi Jahe Wangi', 2, '0', '5000', 'BTL', 40, '2024-04-29', 'belum'),
+(22, 'KB022', 'Zoe', '83847254', 'SUKABUMI', 'Susu Ultra', 2, '0', '5000', 'BTL', 40, '2024-04-30', 'belum'),
+(23, 'KB023', 'Adam', '83847255', 'SUKABUMI', 'Susu Bendera', 2, '0', '5000', 'BTL', 40, '2024-05-01', 'belum'),
+(24, 'KB024', 'Beth', '83847256', 'SUKABUMI', 'Susu Frisian Flag', 2, '0', '5000', 'BTL', 40, '2024-05-02', 'belum'),
+(25, 'KB025', 'Chris', '83847257', 'SUKABUMI', 'Susu SGM', 2, '0', '5000', 'BTL', 40, '2024-05-03', 'belum'),
+(26, 'KB026', 'Diane', '83847258', 'SUKABUMI', 'Susu Bear Brand', 2, '0', '5000', 'BTL', 40, '2024-05-04', 'belum'),
+(27, 'KB027', 'Emma', '83847259', 'SUKABUMI', 'Susu Greenfields', 2, '0', '5000', 'BTL', 40, '2024-05-05', 'belum'),
+(28, 'KB028', 'Fred', '83847260', 'SUKABUMI', 'Air Mineral Aqua', 2, '0', '5000', 'BTL', 40, '2024-05-06', 'belum'),
+(29, 'KB029', 'Hannah', '83847261', 'SUKABUMI', 'Air Mineral Club', 2, '0', '5000', 'BTL', 40, '2024-05-07', 'belum'),
+(30, 'KB030', 'Isaac', '83847262', 'SUKABUMI', 'Air Mineral Pristine', 2, '0', '5000', 'BTL', 40, '2024-05-08', 'belum'),
+(31, 'KB031', 'Jade', '83847263', 'SUKABUMI', 'Air Mineral Le Minerale', 2, '0', '5000', 'BTL', 40, '2024-05-09', 'belum'),
+(32, 'KB032', 'Kyle', '83847264', 'SUKABUMI', 'Air Mineral Equil', 2, '0', '5000', 'BTL', 40, '2024-05-10', 'belum'),
+(33, 'KB033', 'Lucy', '83847265', 'SUKABUMI', 'Minuman Isotonik Pocari Sweat', 2, '0', '5000', 'BTL', 40, '2024-05-11', 'belum'),
+(34, 'KB034', 'Matt', '83847266', 'SUKABUMI', 'Minuman Energi Kratingdaeng', 2, '0', '5000', 'BTL', 40, '2024-05-12', 'belum'),
+(35, 'KB035', 'Nina', '83847267', 'SUKABUMI', 'Minuman Berenergi M-150', 2, '0', '5000', 'BTL', 40, '2024-05-13', 'belum'),
+(36, 'KB036', 'Owen', '83847268', 'SUKABUMI', 'Minuman Fruity Tea', 2, '0', '5000', 'BTL', 40, '2024-05-14', 'belum'),
+(37, 'KB037', 'Rachel', '83847269', 'SUKABUMI', 'Minuman Sariwangi', 2, '0', '5000', 'BTL', 40, '2024-05-15', 'belum'),
+(38, 'KB038', 'Scott', '83847270', 'SUKABUMI', 'Minuman Nutrijell', 2, '0', '5000', 'BTL', 40, '2024-05-16', 'belum'),
+(39, 'KB039', 'Tara', '83847271', 'SUKABUMI', 'Minuman Marjan', 2, '0', '5000', 'BTL', 40, '2024-05-17', 'belum'),
+(40, 'KB040', 'Vince', '83847272', 'SUKABUMI', 'Minuman Sari Asem', 2, '0', '5000', 'BTL', 40, '2024-05-18', 'belum'),
+(41, 'KB041', 'Wendy', '83847273', 'SUKABUMI', 'Minuman Rasa Buah Frestea', 2, '0', '5000', 'BTL', 40, '2024-05-19', 'belum'),
+(42, 'KB042', 'Ani', '83847274', 'SUKABUMI', 'Mie Instan (misalnya Indomie, Mie Sedap, Sarimi)', 1, '0', '5000', 'BTL', 40, '2024-05-20', 'belum'),
+(43, 'KB043', 'Budi', '83847275', 'SUKABUMI', 'Kerupuk (kerupuk mie, kerupuk udang, kerupuk kampu', 1, '0', '5000', 'BTL', 40, '2024-05-21', 'belum'),
+(44, 'KB044', 'Citra', '83847276', 'SUKABUMI', 'Krupuk Pangsit', 1, '0', '5000', 'BTL', 40, '2024-05-22', 'belum'),
+(45, 'KB045', 'Dian', '83847277', 'SUKABUMI', 'Keripik (keripik kentang, keripik pisang, keripik ', 1, '0', '5000', 'BTL', 40, '2024-05-23', 'belum'),
+(46, 'KB046', 'Eka', '83847278', 'SUKABUMI', 'Permen (Permen Karet, Permen Lolipop, Permen Jelly', 1, '0', '5000', 'BTL', 40, '2024-05-24', 'belum'),
+(47, 'KB047', 'Fitri', '83847279', 'SUKABUMI', 'Biskuit (misalnya Roma, Khong Guan, Beng-Beng)', 1, '0', '5000', 'BTL', 40, '2024-05-25', 'belum'),
+(48, 'KB048', 'Gita', '83847280', 'SUKABUMI', 'Wafer (Wafer Tango, Wafer Selamat, Wafer Astor)', 1, '0', '5000', 'BTL', 40, '2024-05-26', 'belum'),
+(49, 'KB049', 'Hadi', '83847281', 'SUKABUMI', 'Biskuit Sandwich (misalnya Choco Pie, Oreo)', 1, '0', '5000', 'BTL', 40, '2024-05-27', 'belum'),
+(50, 'KB050', 'Ida', '83847282', 'SUKABUMI', 'Susu Kental Manis (SKM)', 1, '0', '5000', 'BTL', 40, '2024-05-28', 'belum'),
+(51, 'KB051', 'Joko', '83847283', 'SUKABUMI', 'Kacang Garuda', 1, '0', '5000', 'BTL', 40, '2024-05-29', 'belum'),
+(52, 'KB052', 'Kiki', '83847284', 'SUKABUMI', 'Kacang Bawang (Kacang Atom, Kacang Telur)', 1, '0', '5000', 'BTL', 40, '2024-05-30', 'belum'),
+(53, 'KB053', 'Lina', '83847285', 'SUKABUMI', 'Biskuit Marie Regal', 1, '0', '5000', 'BTL', 40, '2024-05-31', 'belum'),
+(54, 'KB054', 'Mira', '83847286', 'SUKABUMI', 'Keripik Singkong', 1, '0', '5000', 'BTL', 40, '2024-06-01', 'belum'),
+(55, 'KB055', 'Nana', '83847287', 'SUKABUMI', 'Coklat (misalnya Silverqueen, Delfi, Cadbury)', 1, '0', '5000', 'BTL', 40, '2024-06-02', 'belum'),
+(56, 'KB056', 'Oka', '83847288', 'SUKABUMI', 'Selai (selai kacang, selai strawberry, selai blueb', 1, '0', '5000', 'BTL', 40, '2024-06-03', 'belum'),
+(57, 'KB057', 'Putra', '83847289', 'SUKABUMI', 'Sereal (misalnya Koko Krunch, Corn Flakes, Fitness', 1, '0', '5000', 'BTL', 40, '2024-06-04', 'belum'),
+(58, 'KB058', 'Rani', '83847290', 'SUKABUMI', 'Popcorn', 1, '0', '5000', 'BTL', 40, '2024-06-05', 'belum'),
+(59, 'KB059', 'Sari', '83847291', 'SUKABUMI', 'Mie Goreng Instan (misalnya Samyang, Mi ABC)', 1, '0', '5000', 'BTL', 40, '2024-06-06', 'belum'),
+(60, 'KB060', 'Tono', '83847292', 'SUKABUMI', 'Bihun Instan', 1, '0', '5000', 'BTL', 40, '2024-06-07', 'belum'),
+(61, 'KB061', 'Umi', '83847293', 'SUKABUMI', 'Roti (Roti Gardenia, Roti Sari Roti, Roti Tawar)', 1, '0', '5000', 'BTL', 40, '2024-06-08', 'belum'),
+(62, 'KB062', 'Vina', '83847294', 'SUKABUMI', 'Biskuit Digestive', 1, '0', '5000', 'BTL', 40, '2024-06-09', 'belum'),
+(63, 'KB063', 'Wati', '83847295', 'SUKABUMI', 'Biskuit Crackers (misalnya Roma Crackers)', 1, '0', '5000', 'BTL', 40, '2024-06-10', 'belum'),
+(64, 'KB064', 'Yani', '83847296', 'SUKABUMI', 'Kue Kering (Kue Lidah Kucing, Kue Bangkit)', 1, '0', '5000', 'BTL', 40, '2024-06-11', 'belum'),
+(65, 'KB065', 'Zain', '83847297', 'SUKABUMI', 'Tahu Crispy', 1, '0', '5000', 'BTL', 40, '2024-06-12', 'belum'),
+(66, 'KB066', 'Adi', '83847298', 'SUKABUMI', 'Sosis (misalnya Indomie Goreng Sosis)', 1, '0', '5000', 'BTL', 40, '2024-06-13', 'belum'),
+(67, 'KB067', 'Bayu', '83847299', 'SUKABUMI', 'Roti Burger', 1, '0', '5000', 'BTL', 40, '2024-06-14', 'belum'),
+(68, 'KB068', 'Cinta', '83847300', 'SUKABUMI', 'Pudding (misalnya Pudding Regal)', 1, '0', '5000', 'BTL', 40, '2024-06-15', 'belum'),
+(69, 'KB069', 'Dita', '83847301', 'SUKABUMI', 'Keripik Kentang Balado', 1, '0', '5000', 'BTL', 40, '2024-06-16', 'belum'),
+(70, 'KB070', 'Erlangga', '83847302', 'SUKABUMI', 'Kue Cubit', 1, '0', '5000', 'BTL', 40, '2024-06-17', 'belum'),
+(71, 'KB071', 'Fajar', '83847303', 'SUKABUMI', 'Pastel', 1, '0', '5000', 'BTL', 40, '2024-06-18', 'belum'),
+(72, 'KB072', 'Galuh', '83847304', 'SUKABUMI', 'Siomay Frozen', 1, '0', '5000', 'BTL', 40, '2024-06-19', 'belum'),
+(73, 'KB073', 'Hendra', '83847305', 'SUKABUMI', 'Nugget Ayam', 1, '0', '5000', 'BTL', 40, '2024-06-20', 'belum'),
+(74, 'KB074', 'Indra', '83847306', 'SUKABUMI', 'Roti Bakar', 1, '0', '5000', 'BTL', 40, '2024-06-21', 'belum'),
+(75, 'KB075', 'Jamal', '83847307', 'SUKABUMI', 'Roti Canai', 1, '0', '5000', 'BTL', 40, '2024-06-22', 'belum'),
+(76, 'KB076', 'Kurnia', '83847308', 'SUKABUMI', 'Roti John', 1, '0', '5000', 'BTL', 40, '2024-06-23', 'belum'),
+(77, 'KB077', 'Lutfi', '83847309', 'SUKABUMI', 'Donat', 1, '0', '5000', 'BTL', 40, '2024-06-24', 'belum'),
+(78, 'KB078', 'Maulana', '83847310', 'SUKABUMI', 'Kue Bolu', 1, '0', '5000', 'BTL', 40, '2024-06-25', 'belum'),
+(79, 'KB079', 'Nita', '83847311', 'SUKABUMI', 'Bolu Gulung', 1, '0', '5000', 'BTL', 40, '2024-06-26', 'belum'),
+(80, 'KB080', 'Octa', '83847312', 'SUKABUMI', 'Pie Susu', 1, '0', '5000', 'BTL', 40, '2024-06-27', 'belum'),
+(81, 'KB081', 'Putri', '83847313', 'SUKABUMI', 'Brownies Kukus', 1, '0', '5000', 'BTL', 40, '2024-06-28', 'belum');
 
 -- --------------------------------------------------------
 
@@ -402,10 +481,14 @@ CREATE TABLE `schedule_list` (
 --
 
 INSERT INTO `schedule_list` (`id`, `title`, `start_datetime`, `end_datetime`, `id_lap`, `id_user`, `id_member`, `id_jadwal`, `status_boking`) VALUES
-(36, 'asepsaww', '2023-12-08 11:00:00', '2023-12-08 12:00:00', 9, 2, 0, 25, 'Lunas'),
-(38, 'Jadwal', '2023-12-08 09:00:00', '2023-12-08 10:00:00', 9, 1, 1, 23, 'Boking'),
-(39, 'Asepppsukannndar', '2023-12-10 09:00:00', '2023-12-10 10:00:00', 9, 0, 0, 23, 'Boking'),
-(41, 'sas33333', '2023-12-11 11:00:00', '2023-12-11 12:00:00', 9, 0, 0, 25, 'Lunas');
+(36, 'asepsaww', '2023-12-08 11:00:00', '2023-12-08 12:00:00', 9, 2, 0, 22, 'Lunas'),
+(38, 'Jadwal', '2023-12-08 09:00:00', '2023-12-08 10:00:00', 6, 1, 1, 23, 'Boking'),
+(39, 'Asepppsukannndar', '2023-12-10 09:00:00', '2023-12-10 10:00:00', 10, 0, 0, 24, 'Boking'),
+(41, 'sas33333', '2023-12-11 11:00:00', '2023-12-11 12:00:00', 11, 0, 0, 25, 'Lunas'),
+(42, 'uhkti', '2023-12-08 11:00:00', '2023-12-08 12:00:00', 9, 2, 0, 25, 'Lunas'),
+(43, 'jey', '2023-12-08 09:00:00', '2023-12-08 10:00:00', 6, 1, 1, 23, 'Boking'),
+(44, 'Asepppsukannndar', '2023-12-10 09:00:00', '2023-12-10 10:00:00', 10, 0, 0, 23, 'Boking'),
+(45, 'sas33333', '2023-12-11 11:00:00', '2023-12-11 12:00:00', 11, 0, 0, 25, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -611,7 +694,7 @@ ALTER TABLE `nota`
 -- AUTO_INCREMENT untuk tabel `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pembelian` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT untuk tabel `pemesanan`
@@ -629,7 +712,7 @@ ALTER TABLE `penjualan`
 -- AUTO_INCREMENT untuk tabel `schedule_list`
 --
 ALTER TABLE `schedule_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
