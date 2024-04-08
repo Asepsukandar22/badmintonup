@@ -135,7 +135,8 @@ $data = mysqli_fetch_array($query);
                 <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Transaksi</h6>
-                        <a class="collapse-item" href="?pg=transaksibarang">Barang</a>
+                        <a class="collapse-item" href="?pg=transaksibarang">Penjualan</a>
+                        <a class="collapse-item" href="?pg=transaksipembelian">Pembelian</a>
                         <a class="collapse-item" href="?pg=transaksilapangan">Lapangan</a>
                     </div>
                 </div>
@@ -263,6 +264,13 @@ $data = mysqli_fetch_array($query);
                     case 'transaksibarang':
                          include'transaksi/index.php';
                          break;
+
+                            case 'transaksipembelian':
+                            include'pembelian/pembelian.php';
+                            break;
+                            case 'tambahpembelian':
+                                include'pembelian/tambah.php';
+                                break;
                     // =======================================
                     case 'kategori':
                     include'kategori/index.php';

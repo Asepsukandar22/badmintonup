@@ -36,7 +36,7 @@
                                         <td><a href="harga/hapus.php?id_harga=<?php echo $data[0];?>" onclick="return confirm('Yakin Data Akan Di Hapus?')" class="btn btn-danger btn-sm">Delete</a> |
                                             <a href="?pg=editharga&&id_harga=<?php echo $data[0];?>" class="btn btn-primary btn-sm">Update</a></td>
                                            
-                                        </<tr>
+            </tr>
                                         <?php
                                                 $no++;
                                             }	

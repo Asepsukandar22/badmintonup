@@ -9,18 +9,18 @@
                                     </div>
                                     <form class="user" method="POST">
                                     <?php
-                                    $query = mysqli_query($koneksi, "SELECT max(id_barang) as kodeTerbesar FROM barang");
+                                    $query = mysqli_query($koneksi, "SELECT max(kode_beli) as kodeTerbesar FROM pembelian");
                                     $data = mysqli_fetch_array($query);
-                                    $id_barang = $data['kodeTerbesar'];
-                                    $urutan = (int) substr($id_barang, 3, 3);
+                                    $kode_beli = $data['kodeTerbesar'];
+                                    $urutan = (int) substr($kode_beli, 3, 3);
                                     $urutan++;                                       
-                                    $huruf = "BR";
-                                    $id_barang = $huruf . sprintf("%03s", $urutan);
+                                    $huruf = "KB";
+                                    $kode_beli = $huruf . sprintf("%03s", $urutan);
 
                                     ?>
                                         
                                         <div class="form-group">
-                                        <input type="text" name="id_barang" value="<?php echo $id_barang ?>"  class="form-control" disabled="" >
+                                        <input type="text" name="kode_beli" value="<?php echo $kode_beli ?>"  class="form-control" disabled="" >
                                         </div>
                                         <div class="form-group">
                                         <input type="text" class="form-control form-control-user"

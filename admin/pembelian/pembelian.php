@@ -1,7 +1,7 @@
 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Data Barang</h1>
-                    <a href="?pg=tambahbarang" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2"><i
+                    <h1 class="h3 mb-2 text-gray-800">Data Pembelian</h1>
+                    <a href="?pg=tambahpembelian" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2"><i
                                 class="fas fa-download fa-sm text-white-50"></i>Tambah Data</a>
                     <!-- <a href="?pg=tambahstok" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm mb-2"><i
                                 class="fas fa-download fa-sm text-white-50"></i>Tambah Stok</a> -->
@@ -31,37 +31,24 @@
                                     <tbody>
                                     <?php
 			
-			$query =mysqli_query($koneksi,"SELECT * FROM barang ");
+			$query =mysqli_query($koneksi,"SELECT * FROM pembelian INNER JOIN kategori ON pembelian.id_kategori = kategori.id_kategori WHERE status_stok='sudah'");
 			$no=1;
 			while($data = mysqli_fetch_array($query)){
 			?>	
 
                                         <tr>
                                         <td><?php echo $no; ?></td>
+                                        <td><?php echo $data['kode_beli']?></td>
                                         <td><?php echo $data['nama_barang']?></td>
+                                        <td><?php echo $data['nama_kategori']?></td>
                                         <td><?php echo $data['merk']?></td>
-                                        <td><?php echo $data['id_kategori']?></td>
                                         <td><?php echo $data['harga_beli']?></td>
-                                        <td><?php echo $data['harga_jual']?></td>
-                                        <td><?php echo $data['satuan_barang']?></td>
-                                        <td><?php echo $data['stok']?></td>
-                                        <td>
-                                            <?php
-                                        $stok = $data['stok'];
-                                        if ($stok < 5) {
-                                            ?>
-                                            <a href="?pg=tambahstok&&id=<?php echo $data[0];?>" class="btn btn-warning btn-sm" onclick="return confirm('Siap Menambahkan Stok')" >ReStok</a>
-                                            <?php
-                                        }else{
-                                            ?>
-                                            <a href="barang/hapus.php?id=<?php echo $data[0];?>" onclick="return confirm('Yakin Data Akan Di Hapus?')" class="btn btn-danger btn-sm">Delete</a> |
-                                            <a href="?pg=editbarang&&id=<?php echo $data[0];?>" class="btn btn-primary btn-sm">Update</a>
-                                            <?php
-                                        }
-                                            ?>
-                                            </td>
+                                        <td><?php echo $data['jumlah']?></td>
+                                        <td><?php echo $data['tanggal_beli']?></td>
+                                        <td><a href="harga/hapus.php?id_pembelian=<?php echo $data[0];?>" onclick="return confirm('Yakin Data Akan Di Hapus?')" class="btn btn-danger btn-sm">Delete</a> |
+                                            <a href="?pg=editharga&&id_pembelian=<?php echo $data[0];?>" class="btn btn-primary btn-sm">Update</a></td>
                                            
-                                        </tr>
+                                         </tr>
                                         <?php
                                                 $no++;
                                             }	
