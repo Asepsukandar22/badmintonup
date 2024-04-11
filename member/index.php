@@ -53,7 +53,8 @@ $data = mysqli_fetch_array($query);
             
             
           </ul>
-          <a href="../inc/logout.php" onclick="return confirm('Apakah Anda Akan Logout?')" class="btn btn-danger btn-lg"><i data-feather="user"></i> <?php echo $data['nama_lengkap'];?></a>   
+          <a href="?pg=profil" class="btn btn-primary btn-lg"><i data-feather="user"></i> <?php echo $data['nm_lengkap'];?></a>   | 
+          <a href="../inc/logout.php" onclick="return confirm('Apakah Anda Akan Logout?')" class="btn btn-danger btn-lg"><i data-feather="user"></i> Logout</a>   
         </div>
       </div>
     </nav>
@@ -65,6 +66,9 @@ $data = mysqli_fetch_array($query);
     case 'home':
       include'content/home.php';
       break;
+      case 'profil':
+        include'content/profil.php';
+        break;
       case 'pembayaran':
         include'content/pembayaran.php';
         break;

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Apr 2024 pada 12.28
+-- Waktu pembuatan: 11 Apr 2024 pada 15.34
 -- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.0.30
+-- Versi PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`) VALUES
-(1, 'BR001', 2, 'Teh Botol Sosro', 'Sosro', '5000', '6500', 'BTL', '40', '2024-04-10'),
+(1, 'BR001', 2, 'Teh Botol Sosro', 'Sosro', '5000', '6500', 'BTL', '42', '2024-04-10'),
 (2, 'BR002', 2, 'Teh Kotak', 'kotak', '5000', '6500', 'BTL', '40', '2024-04-11'),
 (3, 'BR003', 2, 'Teh Pucuk Harum', 'pucuk', '5000', '6500', 'BTL', '40', '2024-04-12'),
 (4, 'BR004', 2, 'Teh Gelas', 'gelas', '5000', '6500', 'BTL', '40', '2024-04-13'),
@@ -233,7 +233,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id_member`, `nm_lengkap`, `email`, `password`, `no_hp`, `kode_member`, `akses`) VALUES
-(1, 'Juan', 'member@gmail.com', 'member', '222', 'BCB001', 'member'),
+(1, 'Juan KS', 'member@gmail.com', 'member', '222', 'BCB001', 'member'),
 (2, 'Alex', 'Member1@gmail.com', 'Member1', '83948', 'BCB002', 'member'),
 (3, 'Ben', 'Member1@gmail.com', 'Member2', '83949', 'BCB003', 'member'),
 (4, 'Chloe', 'Member1@gmail.com', 'Member3', '83950', 'BCB004', 'member'),
@@ -333,7 +333,7 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `kode_beli`, `nama_pemasok`, `no_hp`, `alamat`, `nama_barang`, `id_kategori`, `merk`, `harga_beli`, `satuan`, `jumlah`, `tanggal_beli`, `status_stok`) VALUES
-(2, 'KB002', 'Alex', '83847234', 'SUKABUMI', 'Teh Botol Sosro', 2, 'Sosro', '5000', 'BTL', 40, '2024-04-10', 'belum'),
+(2, 'KB002', 'Alex', '83847234', 'SUKABUMI', 'Teh Botol Sosro', 2, 'Sosro', '5000', 'BTL', 40, '2024-04-10', 'sudah'),
 (3, 'KB003', 'Ben', '83847235', 'SUKABUMI', 'Teh Kotak', 2, 'kotak', '5000', 'BTL', 40, '2024-04-11', 'belum'),
 (4, 'KB004', 'Chloe', '83847236', 'SUKABUMI', 'Teh Pucuk Harum', 2, 'pucuk', '5000', 'BTL', 40, '2024-04-12', 'belum'),
 (5, 'KB005', 'Dan', '83847237', 'SUKABUMI', 'Teh Gelas', 2, 'gelas', '5000', 'BTL', 40, '2024-04-13', 'belum'),
@@ -511,7 +511,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama_lengkap`, `email`, `password`, `no_hp`, `akses`) VALUES
 (1, 'asep sukandar', 'admin@gmail.com', 'admin', '0899', 'admin'),
-(2, 'User Kita22', 'user@gmail.com', 'user', '0987', 'user'),
+(2, 'User Kita22 ', 'user@gmail.com', 'user', '0987', 'user'),
 (3, 'asep sukandar', 'user2@gmail.com', '222', '0899', 'user'),
 (4, 'Mangiang', 'mangiang@gmail.com', '333', '087', 'kepala'),
 (5, 'Ani', 'user1@gmail.com', 'user1', '83948', 'user'),

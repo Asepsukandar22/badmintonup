@@ -1,8 +1,8 @@
 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Data Barang</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Data Barang </h1>
                     <a href="?pg=tambahbarang" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Tambah Data</a>
+                                class="fas fa-download fa-sm text-white-50"></i>Tambah Data Barang Baru</a>
                     <!-- <a href="?pg=tambahstok" class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm mb-2"><i
                                 class="fas fa-download fa-sm text-white-50"></i>Tambah Stok</a> -->
                      

@@ -151,6 +151,7 @@ $data = mysqli_fetch_array($query);
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Laporan</h6>
                         <a class="collapse-item" href="?pg=laporanbarang">Penjualan</a>
+                        <a class="collapse-item" href="?pg=laporanpembelian">Pembelian</a>
                         <a class="collapse-item" href="?pg=laporanlapangan">Lapangan</a>
                     </div>
                 </div>
@@ -334,9 +335,15 @@ $data = mysqli_fetch_array($query);
                         case 'laporanbarang':
                             include'laporan/barang.php';
                             break;
+                            case 'laporanpembelian':
+                                include'laporan/pembelian.php';
+                                break;
                             case 'periodebarang':
                                 include'laporan/periodebarang.php';
                                 break;
+                                case 'periodepembelian':
+                                    include'laporan/periodepembelian.php';
+                                    break;
 
                 default:
                 include'dashboard/index.php';
