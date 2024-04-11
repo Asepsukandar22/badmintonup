@@ -17,6 +17,11 @@ if ($cek>0) {
 		$_SESSION['status']= "USER";
 		$_SESSION['id_user']=$data[0];
 		header("location:../user/index.php");
+	}else if($data['akses']=="kepala") {
+		$_SESSION['email']= $email;
+		$_SESSION['status']= "KEPALA";
+		$_SESSION['id_user']=$data[0];
+		header("location:../kepala/index.php");
 }
 }else{
 	?>
