@@ -164,23 +164,33 @@ if (isset($_POST['simpantransaksi'])) {
   $source = $_FILES['bukti']['tmp_name'];
   $folder = 'bukti/';
 
-  
-  if ($bayardp >=  $harga) {
+  // Logic Lunas / DP
+  if ($bayardp ==  $harga || $bayardp >=  $harga) {
+    move_uploaded_file($source, $folder.$nama_file);
+    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES (NULL,'$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
+                                                              ,'$sisa',NULL,'$id_pesan','$nama_file','$id_user',NULL)");
+    if ($sql) {
+      $upstatus= mysqli_query($koneksi, "UPDATE schedule_list SET status_boking='Lunas' WHERE id='$id_pesan'");
+      ?>
+        <script type="text/javascript">
+          alert("Transaksi Berhasil Di Lunasi");
+          window.location ="index.php?pg=pembayaran";
+        </script>
+        <?php
+      }
     ?>
-    <script type="text/javascript">
-      alert("Uang DP Tidak Boleh Lebih Dari Harga");
-      window.location ="index.php?pg=pembayaran";
-    </script>
+    
+   
     <?php
   }else{
     move_uploaded_file($source, $folder.$nama_file);
-    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES ('','$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
-                                                              ,'$sisa','$id_pesan','$nama_file','$id_user','NULL')");
+    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES (NULL,'$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
+                                                              ,'$sisa',NULL,'$id_pesan','$nama_file','$id_user',NULL)");
     if ($sql) {
       $upstatus= mysqli_query($koneksi, "UPDATE schedule_list SET status_boking='$status_boking' WHERE id='$id_pesan'");
       ?>
         <script type="text/javascript">
-          alert("Transaksi Berhasil Di kirim");
+          alert("Transaksi Berhasil Bayar DP");
           window.location ="index.php?pg=pembayaran";
         </script>
         <?php

@@ -19,6 +19,7 @@
 
                     $end_datetime = date('Y-m-d H:i:s',strtotime('+3 hour',strtotime($start_datetime)));
                     $inputjadwal = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES ('','$nama_klub','$start_datetime','$end_datetime','$id_lap','$id_user','','$id_jadwal')");
+                    var_dump($inputjadwal);
                     if ($inputjadwal) {
                         ?>
                         <script type="text/javascript">

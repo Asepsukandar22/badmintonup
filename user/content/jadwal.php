@@ -144,11 +144,11 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
         <form method="POST">
         <div class="row">
             
-            <input type="hidden" name="statusboking" value="Boking">
+            <input type="hidden" name="status_boking" value="Boking">
             <input type="hidden" class="form-control" value="<?php echo $row['id_lap'];?>" name="id_lap">
             <div class="col-12">
             <label for="">Nama Klub</label>
-            <input type="text" class="form-control" name="nama_klub">
+            <input type="text" class="form-control" name="title">
             </div>
             
             <div class="col-6">
@@ -183,54 +183,59 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 </div>
 
 <?php
-					if (isset($_POST['boking'])) {
-                        $tgl_sekarang = date('Y-m-d');
+if (isset($_POST['boking'])) {
+    $tgl_sekarang = date('Y-m-d');
 
-                        $id_user = $_SESSION['id_user'];
-                        $id_lap = $_POST['id_lap'];
-                        $nama_klub = $_POST['nama_klub'];
-                        $tgl_boking = $_POST['tgl_boking'];
-                        $id_jadwal = $_POST['id_jadwal'];                       
-                        $statusboking = $_POST['statusboking'];
+    $id_user = $_SESSION['id_user'];
+    $id_lap = $_POST['id_lap'];
+    $title = $_POST['title'];
+    $tgl_boking = $_POST['tgl_boking'];
+    $id_jadwal = $_POST['id_jadwal'];                       
+    $status_boking = $_POST['status_boking'];
 
-                        $lihatjadwal = mysqli_query($koneksi,"SELECT * FROM jadwal INNER JOIN harga ON jadwal.id_harga = harga.id_harga WHERE jadwal.id_jadwal='$id_jadwal'");
-                        $jamharga    =mysqli_fetch_array($lihatjadwal);
+    $lihatjadwal = mysqli_query($koneksi,"SELECT * FROM jadwal INNER JOIN harga ON jadwal.id_harga = harga.id_harga WHERE jadwal.id_jadwal='$id_jadwal'");
+    $jamharga    =mysqli_fetch_array($lihatjadwal);
 
-                        $jam    =$jamharga['jam'];
-                        $start_datetime = date('Y-m-d H:i:s', strtotime("$tgl_boking $jam"));
-    
-                        $end_datetime = date('Y-m-d H:i:s',strtotime('+1 hour',strtotime($start_datetime)));
-                       
-                        if ($tgl_boking < $tgl_sekarang) {
-                            ?>
-                            <script type="text/javascript">
-							alert("Tanggal Boking Tidak Boleh Kurang Dari Hari Ini");
-							window.location = "?pg=lapangan";
-							</script>
-							<?php
-                          }else{
-                            $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE start_datetime='$start_datetime' or end_datetime='$end_datetime'"));
-                            if ($cek > 0) {
-                                ?>
-                                    <script type="text/javascript">
-                                    alert("Jadwal Sudah Ada Yang Boking");
-                                    window.location = "?pg=lapangan";
-                                    </script>
-                                    <?php
-                            }else{
-                            $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES ('','$nama_klub','$start_datetime','$end_datetime','$id_lap','$id_user','NULL','$id_jadwal','$statusboking')");
-                                if ($sql){
-                                    ?>
-                                    <script type="text/javascript">
-                                    alert("Berhasil Di Boking");
-                                    window.location = "?pg=pembayaran";
-                                </script>
-                                <?php
-                                }
-                             }
-                        }
-                    }
-                        ?>
+    $jam    =$jamharga['jam'];
+    $start_datetime = date('Y-m-d H:i:s', strtotime("$tgl_boking $jam"));
+
+    $end_datetime = date('Y-m-d H:i:s',strtotime('+1 hour',strtotime($start_datetime)));
+    // echo $start_datetime;
+    // echo $end_datetime;
+    // echo $title;
+    echo $id_jadwal;
+    // echo $id_user;
+    // echo $statusboking;
+    if ($tgl_boking < $tgl_sekarang) {
+        ?>
+        <script type="text/javascript">
+        alert("Tanggal Boking Tidak Boleh Kurang Dari Hari Ini");
+        window.location = "?pg=lapangan";
+        </script>
+        <?php
+    } else{
+        $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE start_datetime='$start_datetime' or end_datetime='$end_datetime'"));
+        if ($cek > 0) {
+            ?>
+                <script type="text/javascript">
+                alert("Jadwal Sudah Ada Yang Boking");
+                window.location = "?pg=lapangan";
+                </script>
+                <?php
+        } else{
+        $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES (null,'$title','$start_datetime','$end_datetime','$id_lap','$id_user',NULL,'$id_jadwal','$status_boking')");
+            if ($sql){
+                ?>
+                <script type="text/javascript">
+                alert("Berhasil Di Boking");
+                window.location = "?pg=pembayaran";
+            </script>
+            <?php
+            }
+            }
+    }
+}
+?>
 
 
 
