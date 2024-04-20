@@ -1,3 +1,6 @@
+<?php 
+$total_jam = $_GET['total_jam'];
+?>
 <section class="lapangan" id="lapangan">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
@@ -10,7 +13,7 @@
          ?>
         <?php
             $id_user = $_SESSION['id_user'];
-            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN user ON schedule_list.id_user INNER JOIN jadwal ON schedule_list.id_jadwal = jadwal.id_jadwal INNER JOIN harga ON jadwal.id_harga = harga.id_harga  WHERE user.id_user = '$id_user' AND status_boking='Boking' ");
+            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN user ON schedule_list.id_user  WHERE user.id_user = '$id_user' AND status_boking='Boking' ");
             $data33 = mysqli_fetch_array($query1);
             ?>
             <h2 class="text-head">Pembayaran di <span>Sport</span> Center </h2>
@@ -51,7 +54,7 @@
             </tr>
             <tr>
             <th>Jumlah Jam</th>
-            <td>1</td>
+            <td><?php echo $total_jam; ?></td>
             </tr>
             <tr>
             <th>Harga Bayar</th>
@@ -81,8 +84,9 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Lapangan</th>
-                <th scope="col">Jadwal Mulai</th>
-                <th scope="col">Jadwal Selesai</th>
+                <th scope="col">Tanggal Booking</th>
+                <th scope="col">Jam Mulai</th>
+                <th scope="col">Jam Selesai</th>
                 <th scope="col">Kode Pesan</th>
                 <th scope="col">Harga</th>
                 <th scope="col">DP</th>
@@ -103,8 +107,9 @@
             
             <td scope="row"><?php echo $no; ?></td>
             <td><?php echo $data['no_lap']?></td>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data['end_datetime']));?></td>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data['start_datetime']));?></td>
+            <td><?php echo $data['tanggal_booking']?></td>
+            <td><?php echo $data['start_time']?></td>
+            <td><?php echo $data['end_time']?></td>
             <td><?php echo $data['kode_pesan']?></td>
             <td><?php echo "Rp. " . number_format($data['harga']) ;?></td>
             <td><?php echo "Rp. " . number_format($data['dp']) ;?></td>
@@ -153,9 +158,9 @@ if (isset($_POST['simpantransaksi'])) {
   $id_user = $_SESSION['id_user'];
   $tgl_sekarang = date('Y-m-d');
   $kode_pesan = $_POST['kode_pesan'];
-  $harga = $_POST['harga'];
+  $harga = 20000;
   $id_pesan = $_POST['id_pesan'];
-  $jumlah_jam = $_POST['jumlah_jam'];
+  $jumlah_jam = $total_jam;
   $bayardp = $_POST['bayardp'];
   $status_boking = $_POST['status_boking'];
   

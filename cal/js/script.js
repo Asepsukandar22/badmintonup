@@ -5,9 +5,12 @@
         if (!!scheds) {
             Object.keys(scheds).map(k => {
                 var row = scheds[k]
-                events.push({ id: row.id, title: row.title, start: row.start_datetime, end: row.end_datetime });
+                console.log(row)
+                events.push({ id: row.id, title: row.title, start: row.tanggal_booking,end:tanggal_booking });
             })
         }
+        console.log(events,'events')
+        console.log(calendar)
         var date = new Date()
         var d = date.getDate(),
             m = date.getMonth(),
@@ -44,6 +47,7 @@
         });
 
         calendar.render();
+        console.log(calendar)
 
         // Form reset listener
         $('#schedule-form').on('reset', function() {
@@ -56,12 +60,12 @@
             var id = $(this).attr('data-id')
             if (!!scheds[id]) {
                 var _form = $('#schedule-form')
-                console.log(String(scheds[id].start_datetime), String(scheds[id].start_datetime).replace(" ", "\\t"))
+                console.log(String(scheds[id].tanggal_booking), String(scheds[id].tanggal_booking).replace(" ", "\\t"))
                 _form.find('[name="id"]').val(id)
                 _form.find('[name="title"]').val(scheds[id].title)
                 _form.find('[name="description"]').val(scheds[id].description)
-                _form.find('[name="start_datetime"]').val(String(scheds[id].start_datetime).replace(" ", "T"))
-                _form.find('[name="end_datetime"]').val(String(scheds[id].end_datetime).replace(" ", "T"))
+                _form.find('[name="tanggal_booking"]').val(String(scheds[id].tanggal_booking).replace(" ", "T"))
+                
                 $('#event-details-modal').modal('hide')
                 _form.find('[name="title"]').focus()
             } else {
