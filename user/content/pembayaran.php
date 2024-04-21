@@ -1,6 +1,4 @@
-<?php 
-$total_jam = $_GET['total_jam'];
-?>
+
 <section class="lapangan" id="lapangan">
     <div class="container">
       <main class="contain" data-aos="fade-right" data-aos-duration="1000">
@@ -45,20 +43,24 @@ $total_jam = $_GET['total_jam'];
             <td><?php echo $data33['title'];?></td>
             </tr>
             <tr>
-            <th>Jadwal Mulai</th>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data33['start_datetime']));?></td>
+            <th>Tanggal Booking</th>
+            <td><?php echo $data33['tanggal_booking'] ?></td>
             </tr>
             <tr>
-            <th>Jadwal Selesai</th>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data33['end_datetime']));?></td>
+            <th>Jam Mulai</th>
+            <td><?php echo $data33['start_time'];?></td>
+            </tr>
+            <tr>
+            <th>Jam Selesai</th>
+            <td><?php echo $data33['end_time'];?></td>
             </tr>
             <tr>
             <th>Jumlah Jam</th>
-            <td><?php echo $total_jam; ?></td>
+            <td><?php echo $data33['total_jam']; ?></td>
             </tr>
             <tr>
             <th>Harga Bayar</th>
-            <td><?php echo "Rp. " . number_format($data33['harga']) ;?></td>
+            <td><?php echo "Rp. " . number_format(20000) ;?></td>
             </tr>
             <th>Bayar DP</th>
             <td><input type="number" class="form-control" name="bayardp" require="Wajib Diisi" placeholder="Masukan Nominal Uang"></td>
@@ -160,7 +162,13 @@ if (isset($_POST['simpantransaksi'])) {
   $kode_pesan = $_POST['kode_pesan'];
   $harga = 20000;
   $id_pesan = $_POST['id_pesan'];
-  $jumlah_jam = $total_jam;
+
+  // Get Total Jam From tabel schedule_list
+  $id_user = $_SESSION['id_user'];
+  $getData = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN user ON schedule_list.id_user  WHERE user.id_user = '$id_user' AND status_boking='Boking' ");
+  $data_schedule = mysqli_fetch_array($getData);
+  $jumlah_jam = $data_schedule['total_jam'];
+
   $bayardp = $_POST['bayardp'];
   $status_boking = $_POST['status_boking'];
   

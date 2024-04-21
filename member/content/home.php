@@ -40,7 +40,7 @@
               <p class="card-text"><?php echo $deskripsi; ?></p>
             </div>
             <div class="card-footer">
-            <a href="?pg=jadwal&&id_lap=<?= $row["id_lap"]; ?>" class="btn btn-inti">Jadwal Boking</a> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <a href="?pg=jadwal&id_lap=<?= $row["id_lap"]; ?>" class="btn btn-inti">Jadwal Boking</a> <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Harga
             </button>
               </div>

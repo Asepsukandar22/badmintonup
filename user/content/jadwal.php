@@ -4,7 +4,7 @@ $schedules = $koneksi->query("SELECT * FROM schedule_list inner join lapangan ON
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     $row['sdate'] = date("F d, Y h:i A",strtotime($row['tanggal_booking']));
-    $row['edate'] = date("F d, Y h:i A",strtotime($row['tanggal_booking']));
+    // $row['edate'] = date("F d, Y h:i A",strtotime($row['tanggal_booking']));
     $sched_res[$row['id']] = $row;
    
 }
@@ -188,8 +188,8 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
     var jamMulaiHour = parseInt(jamMulaiSplit[0]);
     
     // Menetapkan menit jam mulai menjadi 00
-    var jamMulaiWithZeroMin = jamMulaiHour + ":00";
-    
+    // var jamMulaiWithZeroMin = jamMulaiHour + ":00";
+    var jamMulaiWithZeroMin = (jamMulaiHour < 10 ? "0" :'') +  jamMulaiHour + ":00";
     // Menetapkan jam selesai menjadi jam mulai + 1 jam
     var jamSelesaiHour = (jamMulaiHour + 1) % 24;
     
@@ -210,7 +210,7 @@ if (isset($_POST['boking'])) {
     $tgl_sekarang = date('Y-m-d');
 
     $id_user = $_SESSION['id_user'];
-    $id_lap = $_POST['id_lap'];
+    $id_lap = $_GET['id_lap'];
     $title = $_POST['title'];
     $tanggal_booking = $_POST['tgl_boking'];            
     $status_boking = $_POST['status_boking'];
@@ -227,14 +227,15 @@ if (isset($_POST['boking'])) {
     $selisihDetik = $waktuSelesai - $waktuMulai;
 
     // Konversi selisih waktu dalam detik menjadi jam
-    $jumlahJam = $selisihDetik / (60 * 60);
-    echo $tanggal_booking;
-    echo $start_time;
-    echo $end_time;
-    echo $title;
-   echo $id_lap;
-    echo $id_user;
-    echo $statusboking;
+    $total_jam = $selisihDetik / (60 * 60);
+    // echo $tanggal_booking;
+    // echo $start_time;
+    // echo $end_time;
+    // echo $title;
+   
+    // echo $id_user;
+    // echo $total_jam;
+    // echo $status_boking;
     if ($tanggal_booking < $tgl_sekarang) {
         ?>
         <script type="text/javascript">
@@ -252,12 +253,12 @@ if (isset($_POST['boking'])) {
                 </script>
                 <?php
         } else{
-        $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES (NULL,'$title','$tanggal_booking','$start_time','$end_time','$id_lap','$id_user',NULL,'$status_boking')");
+        $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES (NULL,'$title','$tanggal_booking','$start_time','$end_time','$total_jam','$id_lap','$id_user',NULL,'$status_boking')");
             if ($sql){
                 ?>
                 <script type="text/javascript">
                 alert("Berhasil Di Boking");
-                window.location = "?pg=pembayaran&total_jam=<?php echo $jumlahJam; ?>";
+                window.location = "?pg=pembayaran";
             </script>
             <?php
             }

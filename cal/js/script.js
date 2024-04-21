@@ -6,7 +6,7 @@
             Object.keys(scheds).map(k => {
                 var row = scheds[k]
                 console.log(row)
-                events.push({ id: row.id, title: row.title, start: row.tanggal_booking,end:tanggal_booking });
+                events.push({ id: row.id, title: row.title, start: row.tanggal_booking });
             })
         }
         console.log(events,'events')
@@ -33,7 +33,7 @@
                     _details.find('#title').text(scheds[id].title)
                     _details.find('#description').text(scheds[id].description)
                     _details.find('#start').text(scheds[id].sdate)
-                    _details.find('#end').text(scheds[id].edate)
+                    // _details.find('#end').text(scheds[id].edate)
                     _details.find('#edit,#delete').attr('data-id', id)
                     _details.modal('show')
                 } else {
@@ -60,7 +60,7 @@
             var id = $(this).attr('data-id')
             if (!!scheds[id]) {
                 var _form = $('#schedule-form')
-                console.log(String(scheds[id].tanggal_booking), String(scheds[id].tanggal_booking).replace(" ", "\\t"))
+                // console.log(String(scheds[id].tanggal_booking), String(scheds[id].tanggal_booking).replace(" ", "\\t"))
                 _form.find('[name="id"]').val(id)
                 _form.find('[name="title"]').val(scheds[id].title)
                 _form.find('[name="description"]').val(scheds[id].description)
