@@ -5,8 +5,8 @@
         if (!!scheds) {
             Object.keys(scheds).map(k => {
                 var row = scheds[k]
-                console.log(row)
-                events.push({ id: row.id, title: row.title, start: row.tanggal_booking });
+                console.log(row,'row')
+                events.push({ id: row.id, title: row.title, start: row.tanggal_booking, start_time:row.start_time,end_time:row.end_time});
             })
         }
         console.log(events,'events')
@@ -27,12 +27,15 @@
             //Random default events
             events: events,
             eventClick: function(info) {
+                console.log(scheds[id],'sc')
                 var _details = $('#event-details-modal')
                 var id = info.event.id
                 if (!!scheds[id]) {
                     _details.find('#title').text(scheds[id].title)
                     _details.find('#description').text(scheds[id].description)
                     _details.find('#start').text(scheds[id].sdate)
+                    _details.find('#start_time').text(scheds[id].s_time)
+                    _details.find('#end_time').text(scheds[id].e_time)
                     // _details.find('#end').text(scheds[id].edate)
                     _details.find('#edit,#delete').attr('data-id', id)
                     _details.modal('show')

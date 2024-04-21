@@ -3,7 +3,9 @@ $id_lap = $_GET['id_lap'];
 $schedules = $koneksi->query("SELECT * FROM schedule_list inner join lapangan ON schedule_list.id_lap = lapangan.id_lap Where lapangan.id_lap='$id_lap'");
 $sched_res = [];
 foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
-    $row['sdate'] = date("F d, Y h:i A",strtotime($row['tanggal_booking']));
+    $row['sdate'] = date("Y-m-d",strtotime($row['tanggal_booking']));
+    $row['s_time'] = $row['start_time'];
+    $row['e_time'] = $row['end_time'];
     // $row['edate'] = date("F d, Y h:i A",strtotime($row['tanggal_booking']));
     $sched_res[$row['id']] = $row;
    
@@ -244,7 +246,7 @@ if (isset($_POST['boking'])) {
         </script>
         <?php
     } else{
-        $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE tanggal_booking='$tanggal_booking'"));
+        $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE tanggal_booking='$tanggal_booking' and start_time='$start_time' and end_time='$end_time'"));
         if ($cek > 0) {
             ?>
                 <script type="text/javascript">
@@ -285,10 +287,12 @@ if (isset($_POST['boking'])) {
                             <dt class="text-muted">Nama Klub</dt>
                             <dd id="title" class="fw-bold fs-4"></dd>
                             
-                            <dt class="text-muted">Mulai Boking</dt>
+                            <dt class="text-muted">Tanggal Boking</dt>
                             <dd id="start" class=""></dd>
-                            <dt class="text-muted">Selesai Boking</dt>
-                            <dd id="end" class=""></dd>
+                            <dt class="text-muted">Jam Mulai</dt>
+                            <dd id="start_time" class=""></dd>
+                            <dt class="text-muted">Jam Selesai</dt>
+                            <dd id="end_time" class=""></dd>
                         </dl>
                     </div>
                 </div>

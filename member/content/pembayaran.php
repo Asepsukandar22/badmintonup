@@ -10,7 +10,8 @@
          ?>
         <?php
             $id_member = $_SESSION['id_member'];
-            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN member ON schedule_list.id_member WHERE member.id_member = '$id_member' AND status_boking='Boking'");
+            $total_amount = 20000 * $data33['total_jam']
+            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN member ON schedule_list.id_member WHERE member.id_member = '$id_member' AND status_boking='Boking' Order By id DESC Limit 1");
             $data33 = mysqli_fetch_array($query1);
             ?>
             <h2 class="text-head">Pembayaran di <span>Sport</span> Center </h2>
@@ -60,7 +61,7 @@
             </tr>
             <tr>
             <th>Harga Bayar</th>
-            <td><?php echo "Rp. " . number_format(20000) ;?></td>
+            <td><?php echo "Rp. " . number_format($total_amount) ;?></td>
             </tr>
             <th>Bayar DP</th>
             <td><input type="number" class="form-control" name="bayardp" require="Wajib Diisi" placeholder="Masukan Nominal Uang"></td>
@@ -93,6 +94,7 @@
                 <th scope="col">Harga</th>
                 <th scope="col">DP</th>
                 <th scope="col">Sisa Bayar</th>
+                <th scope="col">Status</th>
                 <th scope="col">Bukti</th>
                 <th scope="col">Status</th>
                 
@@ -115,6 +117,7 @@
             <td><?php echo "Rp. " . number_format($data['harga']) ;?></td>
             <td><?php echo "Rp. " . number_format($data['dp']) ;?></td>
             <td><?php echo "Rp. " . number_format($data['sisa']) ;?></td>
+            <td><?php echo $data['status_boking'] =='Pending' ?'Belum Lunas' :'Lunas' ;?></td>
             <td><?php
 										if($data['bukti'] == ""){
 										?>
@@ -127,18 +130,7 @@
 										<?php
 										}
 										?></td>
-                  <td><?php
-										if($data['status_boking'] == "Pending"){
-										?>
-										<span class="badge text-bg-danger"><?php echo $data['status_boking']?></span>
-										<?php
-										}
-										else{
-										?>
-										<a href="content/struk.php?id_pemesanan=<?php echo $data[0]; ?>" onclick="return confirm('Sistem Akan Mencektak Struk?')" class="btn btn-success btn-sm" target="_blank">Cetak</a></td>
-										<?php
-										}
-										?></td>
+                  <td>	<a href="content/struk.php?id_pemesanan=<?php echo $data[0]; ?>" onclick="return confirm('Sistem Akan Mencektak Struk?')" class="btn btn-success btn-sm" target="_blank">Cetak</a></td></td>
             
             </tr>
             <?php
@@ -159,7 +151,7 @@ if (isset($_POST['simpantransaksi'])) {
   $id_member = $_SESSION['id_member'];
   $tgl_sekarang = date('Y-m-d');
   $kode_pesan = $_POST['kode_pesan'];
-  $harga = 20000;
+  $harga = $total_amount;
   $id_pesan = $_POST['id_pesan'];
 
   // Get Total Jam From tabel schedule_list
