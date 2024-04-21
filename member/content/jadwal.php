@@ -163,8 +163,8 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
             <div class="col-6">
             <input type="time" id="jamSelesai" name="end_time"  required class="form-control" />
             </div>
-            </div>
-                                  
+           
+                        
         </div>
       </div>
       <div class="modal-footer">
@@ -209,10 +209,10 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 
                         $id_member = $_SESSION['id_member'];
                         $id_lap = $_GET['id_lap'];
-                        $nama_klub = $_POST['nama_klub'];
-                        $tgl_boking = $_POST['tgl_boking'];
+                        $title = $_POST['nama_klub'];
+                        $tanggal_booking = $_POST['tgl_boking'];
                         $id_jadwal = $_POST['id_jadwal'];                       
-                        $statusboking = $_POST['statusboking'];
+                        $status_boking = $_POST['statusboking'];
 
                         $jam    =$jamharga['jam'];
                         $start_time = $_POST['start_time'];
@@ -224,11 +224,21 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
                         $waktuSelesai = strtotime($end_time);
                         // Hitung selisih waktu dalam detik
                         $selisihDetik = $waktuSelesai - $waktuMulai;
-                    
+                       
                         // Konversi selisih waktu dalam detik menjadi jam
                         $total_jam = $selisihDetik / (60 * 60);
                        
-                        if ($tgl_boking < $tgl_sekarang) {
+                       
+                        // echo $nama_klub;
+                        // echo $tanggal_booking;
+                        // echo $start_time;
+                        // echo $end_time;
+                        
+                        // echo $total_jam;
+                        // echo $id_lap;
+                        // echo $id_member;
+                        // echo $status_boking;
+                        if ($tanggal_booking < $tgl_sekarang) {
                             ?>
                             <script type="text/javascript">
 							alert("Tanggal Boking Tidak Boleh Kurang Dari Hari Ini");
@@ -236,7 +246,7 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
 							</script>
 							<?php
                           }else{
-                            $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE tanggal_booking='$tgl_boking'"));
+                            $cek = mysqli_num_rows(mysqli_query($koneksi,"SELECT * FROM schedule_list WHERE tanggal_booking='$tanggal_booking'"));
                             if ($cek > 0) {
                                 ?>
                                     <script type="text/javascript">
@@ -245,7 +255,7 @@ foreach($schedules->fetch_all(MYSQLI_ASSOC) as $row){
                                     </script>
                                     <?php
                             }else{
-                            $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES (NULL,'$nama_klub','$tgl_boking','$start_time','$end_time,'$total_jam,'$id_lap',NULL,'$id_member','$id_jadwal','$statusboking')");
+                            $sql = mysqli_query($koneksi,"INSERT INTO schedule_list VALUES (NULL,'$title','$tanggal_booking','$start_time','$end_time','$total_jam','$id_lap',NULL,'$id_member','$status_boking')");
                                 if ($sql){
                                     ?>
                                     <script type="text/javascript">

@@ -10,7 +10,7 @@
          ?>
         <?php
             $id_member = $_SESSION['id_member'];
-            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN member ON schedule_list.id_member INNER JOIN jadwal ON schedule_list.id_jadwal = jadwal.id_jadwal INNER JOIN harga ON jadwal.id_harga = harga.id_harga  WHERE member.id_member = '$id_member' AND status_boking='Boking' ");
+            $query1 = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN member ON schedule_list.id_member WHERE member.id_member = '$id_member' AND status_boking='Boking'");
             $data33 = mysqli_fetch_array($query1);
             ?>
             <h2 class="text-head">Pembayaran di <span>Sport</span> Center </h2>
@@ -42,20 +42,25 @@
             <td><?php echo $data33['title'];?></td>
             </tr>
             <tr>
-            <th>Jadwal Mulai</th>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data33['start_datetime']));?></td>
+            <th>Tanggal Booking</th>
+            <td><?php echo date("Y-m-d", strtotime($data33['tanggal_booking']));?></td>
             </tr>
             <tr>
-            <th>Jadwal Selesai</th>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data33['end_datetime']));?></td>
+            <tr>
+            <th>Jam Selesai</th>
+            <td><?php echo $data33['end_time'];?></td>
             </tr>
             <tr>
             <th>Jumlah Jam</th>
-            <td>1</td>
+            <td><?php echo $data33['total_jam']; ?></td>
+            </tr>
+            <tr>
+            <th>Jumlah Jam</th>
+            <td><?php echo $data33['total_jam']; ?></td>
             </tr>
             <tr>
             <th>Harga Bayar</th>
-            <td><?php echo "Rp. " . number_format($data33['harga']) ;?></td>
+            <td><?php echo "Rp. " . number_format(20000) ;?></td>
             </tr>
             <th>Bayar DP</th>
             <td><input type="number" class="form-control" name="bayardp" require="Wajib Diisi" placeholder="Masukan Nominal Uang"></td>
@@ -81,8 +86,9 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nama Lapangan</th>
-                <th scope="col">Jadwal Mulai</th>
-                <th scope="col">Jadwal Selesai</th>
+                <th scope="col">Tanggal Booking</th>
+                <th scope="col">Jam Mulai</th>
+                <th scope="col">Jam Selesai</th>
                 <th scope="col">Kode Pesan</th>
                 <th scope="col">Harga</th>
                 <th scope="col">DP</th>
@@ -100,11 +106,11 @@
             while($data = mysqli_fetch_array($query)){
             ?>
             <tr>
-            
             <td scope="row"><?php echo $no; ?></td>
             <td><?php echo $data['no_lap']?></td>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data['end_datetime']));?></td>
-            <td><?php echo date('d-M-Y H:i:s', strtotime($data['start_datetime']));?></td>
+            <td><?php echo date("Y-m-d", strtotime($data['tanggal_booking']))?></td>
+            <td><?php echo $data['start_time']?></td>
+            <td><?php echo $data['end_time']?></td>
             <td><?php echo $data['kode_pesan']?></td>
             <td><?php echo "Rp. " . number_format($data['harga']) ;?></td>
             <td><?php echo "Rp. " . number_format($data['dp']) ;?></td>
@@ -136,9 +142,9 @@
             
             </tr>
             <?php
-                                                $no++;
-                                            }	
-                                                ?>
+              $no++;
+              } 	
+            ?>
             </tbody>    
         </table>
         </div>
@@ -153,9 +159,15 @@ if (isset($_POST['simpantransaksi'])) {
   $id_member = $_SESSION['id_member'];
   $tgl_sekarang = date('Y-m-d');
   $kode_pesan = $_POST['kode_pesan'];
-  $harga = $_POST['harga'];
+  $harga = 20000;
   $id_pesan = $_POST['id_pesan'];
-  $jumlah_jam = $_POST['jumlah_jam'];
+
+  // Get Total Jam From tabel schedule_list
+  $id_member = $_SESSION['id_member'];
+  $getData = mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap INNER JOIN member ON schedule_list.id_member WHERE member.id_member = '$id_member' AND status_boking='Boking' ");
+  $data_schedule = mysqli_fetch_array($getData);
+  $jumlah_jam = $total_jam;
+
   $bayardp = $_POST['bayardp'];
   $status_boking = $_POST['status_boking'];
   
@@ -165,17 +177,27 @@ if (isset($_POST['simpantransaksi'])) {
   $folder = 'bukti/';
 
   
-  if ($bayardp >=  $harga) {
+  if ($bayardp == $harga || $bayardp >=  $harga) {
+    move_uploaded_file($source, $folder.$nama_file);
+    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES (NULL,'$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
+                                                         ,'$sisa',NULL,'$id_pesan','$nama_file',NULL,'$id_member')");
+    if ($sql) {
+      $upstatus= mysqli_query($koneksi, "UPDATE schedule_list SET status_boking='Lunas' WHERE id='$id_pesan'");
+      ?>
+        <script type="text/javascript">
+          alert("Transaksi Berhasil Di Lunasi");
+          window.location ="index.php?pg=pembayaran";
+        </script>
+        <?php
+      }
     ?>
-    <script type="text/javascript">
-      alert("Uang DP Tidak Boleh Lebih Dari Harga");
-      window.location ="index.php?pg=pembayaran";
-    </script>
+    
+   
     <?php
   }else{
     move_uploaded_file($source, $folder.$nama_file);
-    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES ('','$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
-                                                              ,'$sisa','$id_pesan','$nama_file','$id_member','NULL')");
+    $sql = mysqli_query($koneksi,"INSERT INTO pemesanan VALUES (NULL,'$kode_pesan','$tgl_sekarang','$jumlah_jam','$harga','$bayardp'
+                                                              ,'$sisa',NULL,'$id_pesan','$nama_file','$id_member',NULL)");
     if ($sql) {
       $upstatus= mysqli_query($koneksi, "UPDATE schedule_list SET status_boking='$status_boking' WHERE id='$id_pesan'");
       ?>

@@ -44,7 +44,7 @@
             </tr>
             <tr>
             <th>Tanggal Booking</th>
-            <td><?php echo $data33['tanggal_booking'] ?></td>
+            <td><?php echo date("Y-m-d", strtotime($data33['tanggal_booking']));?></td>
             </tr>
             <tr>
             <th>Jam Mulai</th>
@@ -109,7 +109,7 @@
             
             <td scope="row"><?php echo $no; ?></td>
             <td><?php echo $data['no_lap']?></td>
-            <td><?php echo $data['tanggal_booking']?></td>
+            <td><?php echo date("Y-m-d", strtotime($data['tanggal_booking']))?></td>
             <td><?php echo $data['start_time']?></td>
             <td><?php echo $data['end_time']?></td>
             <td><?php echo $data['kode_pesan']?></td>

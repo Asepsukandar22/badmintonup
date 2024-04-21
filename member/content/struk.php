@@ -56,14 +56,20 @@ hr {
 <td><?php echo $data['no_lap']?></td>
 </tr>
 <tr>
+<td>Tanggal Booking</td>
+<td>:</td>
+<td><?php echo date("Y-md-d", strtotime($data['tanggal_booking']));?></td>
+</tr>
+<tr>
+<tr>
 <td>Jadwal Mulai</td>
 <td>:</td>
-<td><?php echo date('d-M-Y H:i:s', strtotime($data['end_datetime']));?></td>
+<td><?php echo $data['start_time'];?></td>
 </tr>
 <tr>
 <td>Jadwal Selesai</td>
 <td>:</td>
-<td><?php echo date('d-M-Y H:i:s', strtotime($data['start_datetime']));?></td>
+<td><?php echo $data['end_time'];?></td>
 </tr>
 
 <td>Harga</td>
