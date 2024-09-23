@@ -78,13 +78,13 @@
                                     <hr>
 
     <div class="row">
-    <?php
+    <!-- <?php
                             include '../inc/koneksi.php';
                             $sql = mysqli_query($koneksi,"SELECT SUM(total) FROM penjualan");
                             $data3 = mysqli_fetch_array($sql);
-                             ?>
+                             ?> -->
     <div class="col-lg-6">
-    <h4 class="text-danger text-left">Total Bayar : <?php echo "Rp." . number_format($data3['SUM(total)']) ;?></h4>
+    <!-- <h4 class="text-danger text-left">Total Bayar : <?php echo "Rp." . number_format($data3['SUM(total)']) ;?></h4> -->
     </div>
     <div class="col-lg-6">
     <form method="POST">

@@ -68,7 +68,7 @@ $data = mysqli_fetch_array($query);
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
             
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
                     aria-expanded="true" aria-controls="collapseTwo1">
                     <i class="fas fa-fw fa-clock"></i>
@@ -82,7 +82,7 @@ $data = mysqli_fetch_array($query);
                         
                     </div>
                 </div>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
@@ -341,10 +341,15 @@ $data = mysqli_fetch_array($query);
                             case 'periodebarang':
                                 include'laporan/periodebarang.php';
                                 break;
+                                case 'periodelapangan':
+                                    include'laporan/periodelapangan.php';
+                                    break;
                                 case 'periodepembelian':
                                     include'laporan/periodepembelian.php';
                                     break;
-
+                                    case 'laporanlapangan':
+                                        include'laporan/lapangan.php';
+                                        break;
                 default:
                 include'dashboard/index.php';
                 break;

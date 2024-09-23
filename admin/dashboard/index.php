@@ -118,33 +118,59 @@
       <th scope="col">No</th>
       <th scope="col">Waktu</th>
       <th scope="col">Nama Custemer</th>
+      <th scope="col">Jam Booking</th>
       <th scope="col">Status Boking</th>
       
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>07.00-08.00</td>
-      <td>Kurnia</td>
-      <td><button class="btn btn-success">Boking</button></td>
-    </tr>
-    <tr>
-    <tr>
-      <td>2</td>
-      <td>08.00-09.00</td>
-      <td>Ramdan</td>
-      <td><button class="btn btn-warning">Sedang</button></td>
-    </tr>
-    <tr>
-    <tr>
-      <td>3</td>
-      <td>09.00-10.00</td>
-      <td>Mirna</td>
-      <td><button class="btn btn-danger">Selesai</button></td>
-    </tr>
-    <tr>
-  </tbody>
+                                    <?php
+                                    $datenow = date('Y-m-d');  
+                                    $query =mysqli_query($koneksi,"SELECT * FROM schedule_list INNER JOIN lapangan ON schedule_list.id_lap = lapangan.id_lap WHERE tanggal_booking='$datenow'");
+                                    $no=1;
+                                    while($data = mysqli_fetch_array($query)){
+                                    ?>	
+                                        <tr>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $data['no_lap']?></td>
+                                        <td><?php echo $data['title']?></td>
+                                        
+                                        <td><?php echo date('H:i:s', strtotime($data['start_time']));?></td>
+                                        
+                                        <td>
+                                            <?php
+                                            if($data['status_boking'] == "Boking"){
+                                                ?>
+                                                  <a href="#" class="btn btn-danger btn-sm"><?php echo $data['status_boking']?></a>
+                                                <?php
+                                            }else{
+                                            $status = $data['status_boking'];
+                                            if ($status == "Pending") {
+                                                ?>
+                                                <form method="POST" >
+                                                <input type="hidden" name="id" value="<?php echo $data[0]; ?>">
+                                                <input type="submit"  name="status" value="Pending">
+                                                </form>
+                                                <?php
+                                            }else{
+                                                ?>
+                                                <button class="btn btn-danger btn-sm"><?php echo $data['status_boking']?></button>
+                                                <?php
+                                            }
+                                        }
+                                            ?>
+                                            
+                                        </td>
+                                       
+                                           
+                                            </td>
+                                           
+                                        </<tr>
+                                        <?php
+                                                $no++;
+                                            }	
+                                                ?>
+                                    </tbody>
 </table> 
                 </div>
               

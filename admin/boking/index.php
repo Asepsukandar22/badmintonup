@@ -6,7 +6,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Verivikasi Boking </h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Verifikasi Boking </h6>
                             
                         </div>
                         <div class="card-body">
@@ -15,9 +15,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Foto</th>
                                             <th>Nama Lapangan</th>
                                             <th>Nama Klub</th>
+                                            <th>Tanggal Boking</th>
                                             <th>Jadwal Mulai</th>
                                             <th>Jadwal Selesai</th>
                                             <th>Status</th>
@@ -34,9 +34,9 @@
                                         <td><?php echo $no; ?></td>
                                         <td><?php echo $data['no_lap']?></td>
                                         <td><?php echo $data['title']?></td>
-                                        <td><?php echo $data['deskripsi']?></td>
-                                        <td><?php echo date('d-M-Y H:i:s', strtotime($data['end_datetime']));?></td>
-                                        <td><?php echo date('d-M-Y H:i:s', strtotime($data['start_datetime']));?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($data['tanggal_booking']));?></td>
+                                        <td><?php echo date('H:i:s', strtotime($data['start_time']));?></td>
+                                        <td><?php echo date('H:i:s', strtotime($data['end_time']));?></td>
                                         <td>
                                             <?php
                                             if($data['status_boking'] == "Boking"){
